@@ -16,6 +16,12 @@ const PORT = process.env.PORT || 3000;
 const VALID_REGIONS = ['EU', 'US', 'AP'];
 const MAX_PAGES = 40;
 
+app.get('/rank/:locale', (req, res) => {
+    const locale = req.params.locale || defaultLocale;
+    const translations = locales[locale] || locales[defaultLocale];
+    res.send(translations.noPlayerName);
+});
+
 app.get('/', (req, res) => {
     res.send(htmlContent);
 });
