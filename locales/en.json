@@ -1,0 +1,10 @@
+{
+    "noPlayerName": "Use !rank player_name server_region (US, EU, AP)",
+    "playerNotFound": "{playerName} could not be found on {region} top 1000 players",
+    "playerRank": "{playerName} is ranked {rank} in the {region} server with a {rating} MMR",
+    "invalidRegion": "Invalid region. Valid regions are: {validRegions}",
+    "apiStatusCodeError": "Received a {statusCode} status code from the API",
+    "apiDataError": "API did not return expected data",
+    "apiFetchError": "Error fetching leaderboard data",
+    "serverStart": "Server started on port {port}"
+}
