@@ -1,46 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentation</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: #f4f4f4;
+            background: linear-gradient(0deg, #e7d2a7, #e9d6ac, #e8d5aa, #ead5a8, #e9d4a7);
         }
+
+        .search-box {
+            padding: 20px;
+            border-radius: 20px;
+            background-color: #f5f5f5;
+            box-shadow: 2px 2px 5px #aaa;
+        }
+
         .container {
+            margin-top: 50px;
+            margin-bottom: 50px;
             text-align: center;
+            width: 40%;
         }
-        button {
-            background-color: #333;
-            color: #fff;
+
+        .input-field {
+            margin: 0;
+        }
+
+        .input-field label,
+        .input-field input {
+            display: block;
+        }
+
+        #player_name {
+            width: 95%;
+            margin-bottom: 0px;
+        }
+
+        #region_name {
+            width: 70%;
+            margin-bottom: 0px;
+        }
+
+        select {
+            width: 30%;
+            display: block;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+            margin-top: -7px;
         }
-        button:hover {
-            background-color: #555;
+
+        .title {
+            font-family: 'Roboto Slab', serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        select[tabindex="-1"] {
+            display: none !important;
+        }
+
+        footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
         }
     </style>
+    <style>
+        .loading-spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #3498db;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
 </head>
+
 <body>
     <div class="container">
+        <div class="title">Battlegrounds rank fetcher</div>
+        <div class="search-box">
+            <div class="row">
+                <div class="input-field col s8">
+                    <label for="player_name" class="active">Enter Player Name</label>
+                    <input placeholder="Search for a player" id="player_name" type="text" class="validate">
+                </div>
+
+
+                <div class="input-field col s4">
+                    <label for="region_name" class="active">Select Region</label>
+                    <select>
+                        <option value="EU" data-icon="https://www.countryflags.io/GB/shiny/64.png">EU</option>
+                        <option value="US" data-icon="https://www.countryflags.io/US/shiny/64.png">US</option>
+                        <option value="AP" data-icon="https://www.countryflags.io/PA/shiny/64.png">AP</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn waves-effect waves-light" id="fetchRank" style="margin-top: 20px;">Fetch Rank</button>
+            <div id="apiResponse" style="margin-top: 20px;"></div>
+        </div>
+    </div>
+    <footer>
         <p>Find the documentation for this project on:</p>
         <a href="https://github.com/Mouchoir/Battlegrounds-rank-fetcher" target="_blank">
-            <button>
+            <button class="btn waves-effect waves-light">
                 <i class="fab fa-github"></i> GitHub
             </button>
         </a>
         <p>Made with ❤️ by Mouchoir</p>
-    </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems);
+        });
+    </script>
+    <script src="./script.js"></script>
 </body>
+
 </html>

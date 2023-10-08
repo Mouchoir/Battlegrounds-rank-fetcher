@@ -1,7 +1,7 @@
 {
   "name": "battlegrounds-rank-fetcher",
   "version": "1.0.0",
-  "description": "",
+  "description": "Fetching a top player's rank in Hearthstone Battlegrounds is now more versatile with localization support. Designed for platforms like Twitch, streamers and viewers can quickly retrieve a player's rank using bots like Nightbot in multiple languages.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,6 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.5.1",
-    "express": "^4.18.2"
-  }
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {}
 }

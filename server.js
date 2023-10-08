@@ -12,6 +12,8 @@ const locales = {
 const defaultLocale = 'en';
 
 const app = express();
+// Serve static files from the 'public' directory
+app.use(express.static(__dirname));
 const PORT = process.env.PORT || 3000;
 const VALID_REGIONS = ['EU', 'US', 'AP'];
 const MAX_PAGES = 40;
