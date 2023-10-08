@@ -16,7 +16,7 @@ const app = express();
 app.use(express.static(__dirname));
 const PORT = process.env.PORT || 3000;
 const VALID_REGIONS = ['EU', 'US', 'AP'];
-const MAX_PAGES = 40;
+const MAX_PAGES = 200;
 
 app.get('/rank/:locale', (req, res) => {
     const locale = req.params.locale || defaultLocale;

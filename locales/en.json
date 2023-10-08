@@ -1,6 +1,6 @@
 {
     "noPlayerName": "Use !rank player_name server_region (US, EU, AP)",
-    "playerNotFound": "{playerName} could not be found on {region} top 1000 players",
+    "playerNotFound": "{playerName} is not good enough to be in the first 200 pages of {region} leaderboard. 👎",
     "playerRank": "{playerName} is ranked {rank} in the {region} server with a {rating} MMR",
     "invalidRegion": "Invalid region. Valid regions are: {validRegions}",
     "apiStatusCodeError": "Received a {statusCode} status code from the API",

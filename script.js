@@ -5,9 +5,17 @@ document.addEventListener("DOMContentLoaded", function() {
     const regionSelect = document.querySelector("select");
     const apiResponseDiv = document.getElementById("apiResponse");
 
+    document.getElementById('player_name').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            document.getElementById('fetchRank').click();
+        }
+    });     
+    
     fetchRankButton.addEventListener("click", async () => {
         const playerName = playerNameInput.value;
         const region = regionSelect.value;
+
+ 
 
         if (!playerName || !region) {
             apiResponseDiv.innerText = "Please enter a player name and select a region.";
