@@ -18,6 +18,16 @@ const PORT = process.env.PORT || 3000;
 const VALID_REGIONS = ['EU', 'US', 'AP'];
 const MAX_PAGES = 200;
 
+const logLevel = process.argv.find(arg => arg.startsWith('--log-level='))?.split('=')[1] || 'INFO';
+
+function logDebug(message, ...optionalParams) {
+    if (logLevel === 'DEBUG') {
+        console.log(message, ...optionalParams);
+    }
+}
+
+logDebug(`Server started with debug logs`);
+
 app.get('/rank/:locale', (req, res) => {
     const locale = req.params.locale || defaultLocale;
     const translations = locales[locale] || locales[defaultLocale];
@@ -40,14 +50,14 @@ app.get('/rank/:playerName/:locale?/:region?', async (req, res) => {
     const playerNameInput = req.params.playerName;
     const locale = req.params.locale || defaultLocale;
     const translations = locales[locale] || locales[defaultLocale];
-    
+
     let playerName, regionFromInput;
     if (playerNameInput.includes(' ')) {
         [playerName, regionFromInput] = playerNameInput.split(' ');
     } else {
         playerName = playerNameInput;
     }
-    
+
     const region = (regionFromInput || req.params.region || 'EU').toUpperCase();
 
     if (!playerName) {
@@ -66,9 +76,18 @@ app.get('/rank/:playerName/:locale?/:region?', async (req, res) => {
     }
 
     try {
+        logDebug(`Starting requests`);
+
         const responses = await Promise.all(requests);
 
+        let pageCount = 0;
+
         const allPlayers = [].concat(...responses.map(response => {
+            logDebug(`Response received from URL:\n`, response.data.leaderboard);
+            logDebug(`Current page count:\n`, pageCount);
+
+            pageCount++;
+
             if (response.status !== 200) {
                 throw new Error(translations.apiStatusCodeError.replace('{statusCode}', response.status));
             }
@@ -77,6 +96,8 @@ app.get('/rank/:playerName/:locale?/:region?', async (req, res) => {
             }
             return response.data.leaderboard.rows;
         }));
+
+        logDebug(`Page count:\n`, pageCount);
 
         const player = allPlayers.find(p => p.accountid.toLowerCase() === playerName.toLowerCase());
 
